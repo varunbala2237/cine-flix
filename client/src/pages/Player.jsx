@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { Home as HomeIcon } from "lucide-react"
 import { fetchMediaData, fetchRecommendedMedia } from "../api/fetchMedia"
-import { fetchAnimeMedia } from "../api/fetchAnimeMedia"
-
 import Header from "../components/Header"
 import Details from "../components/Details"
 import Panel from "../components/Panel"
@@ -42,8 +40,6 @@ export default function Player() {
   const BASE_URL = import.meta.env.VITE_SOURCE_BASE
   
   const [media, setMedia] = useState(null)
-  const [animeMedia, setAnimeMedia] = useState(null)
-  const [animeIndex, setAnimeIndex] = useState(null)
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
@@ -70,18 +66,6 @@ export default function Player() {
     }
     load()
   }, [id, type])
-  
-  useEffect(() => {
-    if (!media) return
-
-    async function loadAnime() {
-      const { animeMedia, initialIndex } = await fetchAnimeMedia(media);
-      setAnimeMedia(animeMedia)
-      setAnimeIndex(initialIndex)
-    }
-
-    loadAnime()
-  }, [media])
   
   useEffect(() => {
     if (!media || !mediaUrl) return;
@@ -131,11 +115,6 @@ export default function Player() {
         onRouteClick={() => navigate("/")}
         icon={HomeIcon}
       />
-      
-      <pre className="text-xs text-green-400 overflow-auto my-4">
-    
-        {JSON.stringify({ animeMedia, animeIndex }, null, 2)}
-      </pre>
 
       <div className="w-full aspect-video mb-4 bg-black">
         <iframe
