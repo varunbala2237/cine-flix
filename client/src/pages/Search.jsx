@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Home as HomeIcon, Search as SearchIcon } from "lucide-react"
 import Header from "../components/Header"
 import SearchResults from "../components/SearchResults"
-import { fetchSearchResults } from "../api/fetchMedia"
+import { fetchSearchResults } from "../api/fetchSearchResults"
 
 export default function Search() {
   const navigate = useNavigate()

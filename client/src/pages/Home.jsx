@@ -5,7 +5,8 @@ import Header from "../components/Header"
 import Carousel from "../components/Carousel"
 import History from "../components/History"
 import Trending from "../components/Trending"
-import { fetchLatestMedia, fetchTrendingMedia } from "../api/fetchMedia"
+import { fetchLatestMedia } from "../api/fetchLatestMedia"
+import { fetchTrendingMedia } from "../api/fetchTrendingMedia"
 
 // Helpers for Local Storage
 function loadHistory() {

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { Home as HomeIcon } from "lucide-react"
-import { fetchMediaData, fetchRecommendedMedia } from "../api/fetchMedia"
 import Header from "../components/Header"
 import Details from "../components/Details"
 import Panel from "../components/Panel"
 import Recommended from "../components/Recommended"
+import { fetchMediaData } from "../api/fetchMediaData"
+import { fetchRecommendedMedia } from "../api/fetchRecommendedMedia"
 
 // Helpers for Local Storage
 function loadState(id) {
