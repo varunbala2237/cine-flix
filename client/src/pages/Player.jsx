@@ -68,43 +68,46 @@ export default function Player() {
     load()
   }, [id, type])
   
-  useEffect(() => {
-    if (!media || !mediaUrl) return;
-
-    saveHistory({
-      id: media.id,
-      title: media.title,
-      poster_path: media.poster_path,
-      backdrop_path: media.backdrop_path,
-      type: media.type
-    });
-  }, [mediaUrl]);
-  
   const handleEpisodeChange = (season, episode) => {
     setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${ADD_ONS}`)
   }
   
-  // To catch trigger episode
+  // To save history and trigger episode change
   useEffect(() => {
-    const handleMsg = (event) => {
-    if (!event.data) return
+    if (!media) return;
 
-    let msg
-    try { msg = JSON.parse(event.data) } catch { return }
+    const handleMsg = (e) => {
+      if (!e.data) return;
 
-    const keys = Object.keys(msg)
-    if (keys.length === 0) return
+      let parsed;
+      try { parsed = JSON.parse(e.data); } catch { return }
+      if (parsed.type !== "MEDIA_DATA") return;
 
-    const lastKey = keys[keys.length - 1]
-    const epData = msg[lastKey]
-    if (!epData || !epData.episode) return
+      let data;
+      try { data = JSON.parse(parsed.data); } catch { return }
 
-    setExternalEpisode(Number(epData.episode))
-    }
+      const current = data[`${media.type}-${media.id}`];
+      if (!current) return;
 
-    window.addEventListener("message", handleMsg)
-    return () => window.removeEventListener("message", handleMsg)
-  }, [])
+      const watched = current.progress?.watched;
+      if (watched > 0) {
+        saveHistory({
+          id: media.id,
+          title: media.title,
+          poster_path: media.poster_path,
+          backdrop_path: media.backdrop_path,
+          type: media.type
+        });
+      }
+
+      if (media.type === "tv" && current.last_episode_watched) {
+        setExternalEpisode(current.last_episode_watched);
+      }
+    };
+
+    window.addEventListener("message", handleMsg);
+    return () => window.removeEventListener("message", handleMsg);
+  }, [media]);
   
   if (!media) return <p className="text-center text-white mt-10">Loading...</p>
   
