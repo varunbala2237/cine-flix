@@ -6,6 +6,7 @@ import Details from "../components/Details"
 import Panel from "../components/Panel"
 import Recommended from "../components/Recommended"
 import { fetchMediaData } from "../api/fetchMediaData"
+import { fetchAnimeMedia } from "../api/fetchAnimeMedia"
 import { fetchRecommendedMedia } from "../api/fetchRecommendedMedia"
 
 // Helpers for Local Storage
@@ -41,6 +42,8 @@ export default function Player() {
   const BASE_URL = import.meta.env.VITE_SOURCE_BASE
   
   const [media, setMedia] = useState(null)
+  const [animeMedia, setAnimeMedia] = useState(null)
+  const [animeInitialIndex, setAnimeInitialIndex] = useState(0);
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
@@ -50,6 +53,10 @@ export default function Player() {
     async function load() {
       const data = await fetchMediaData(id, type)
       setMedia(data)
+      
+      const animeData = await fetchAnimeMedia(data);
+      setAnimeMedia(animeData.animeMedia);
+      setAnimeInitialIndex(animeData.initialIndex);
       
       const recMedia = await fetchRecommendedMedia(id, type)
       setRecommendedMedia(recMedia)
@@ -109,7 +116,9 @@ export default function Player() {
     return () => window.removeEventListener("message", handleMsg);
   }, [media]);
   
-  if (!media) return <p className="text-center text-white mt-10">Loading...</p>
+  if (!media) return <div className="min-h-screen bg-black text-white px-4 py-3">
+    <p className="text-center text-white mt-10">Loading...</p>
+    </div>
   
   return (
     <div className="min-h-screen bg-black text-white px-4 py-3">

@@ -5,6 +5,7 @@ import Header from "../components/Header"
 import Carousel from "../components/Carousel"
 import History from "../components/History"
 import Trending from "../components/Trending"
+import CookieStatus from "../components/CookieStatus"
 import { fetchLatestMedia } from "../api/fetchLatestMedia"
 import { fetchTrendingMedia } from "../api/fetchTrendingMedia"
 
@@ -49,6 +50,8 @@ export default function Home() {
       {/* Trending Section */}
       <Trending mediaTrending={trendingMedia} />
     
+      {/* Cookie Status Section */}
+      <CookieStatus />
     </div>
   )
 }
