@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { Home as HomeIcon } from "lucide-react"
+import Cookies from "js-cookie"
 import Header from "../components/Header"
 import Details from "../components/Details"
 import Panel from "../components/Panel"
@@ -50,10 +51,11 @@ export default function Player() {
   const [media, setMedia] = useState(null)
   const [animeId, setAnimeId] = useState(null)
   const [animeMedia, setAnimeMedia] = useState(null)
+  const [isDub, setIsDub] = useState(Cookies.get("anime_dub") === "true")
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
-  const [selectedSeason, setSelectedSeason] = useState(0)
+  const [selectedSeason, setSelectedSeason] = useState(1)
   const [selectedEpisode, setSelectedEpisode] = useState(1)
   const [autoEpisode, setAutoEpisode] = useState(null)
 
@@ -95,14 +97,18 @@ export default function Player() {
   }, [id, type])
   
   useEffect(() => {
+    const DUB_PARAM = isDub ? "&dub=true" : "&dub=false"
+    
     if (animeMedia) {
-      setMediaUrl(`${BASE_URL}anime/${animeId}/${selectedEpisode}?${ADD_ONS}`)
+      setMediaUrl(`${BASE_URL}anime/${animeId}/${selectedEpisode}?${ADD_ONS}${DUB_PARAM}`)
     } else {
       if (type === "tv") {
         setMediaUrl(`${BASE_URL}${type}/${id}/${selectedSeason}/${selectedEpisode}?${ADD_ONS}`)
       }
     }
-  }, [selectedSeason, selectedEpisode])
+    
+    Cookies.set("anime_dub", isDub, { expires: 365 })
+  }, [selectedSeason, selectedEpisode, isDub])
   
   useEffect(() => {
     if (!autoEpisode) return
@@ -174,6 +180,23 @@ export default function Player() {
 
       {/* Details */}
       <Details media={media} />
+      
+      {animeMedia && animeMedia.length > 0 && (
+        <div className="my-4 flex items-center">
+          <button
+            className={`py-1 px-3 text-sm ${!isDub ? "bg-yellow-500 text-black" : "bg-zinc-900"}`}
+            onClick={() => setIsDub(false)}
+          >
+            Sub
+          </button>
+          <button
+            className={`py-1 px-3 text-sm ${isDub ? "bg-yellow-500 text-black" : "bg-zinc-900"}`}
+            onClick={() => setIsDub(true)}
+          >
+            Dub
+          </button>
+        </div>
+      )}
       
       {/* Multi-Panel Section */}
       {animeMedia && animeMedia.length > 0 ? (
