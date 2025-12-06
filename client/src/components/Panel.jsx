@@ -10,13 +10,10 @@ function saveState(id, data) {
   localStorage.setItem("player_state" + id, JSON.stringify({ ...old, ...data }))
 }
 
-export default function Panel({ id, seasons, onEpisodeChange, triggerEpisode }) {
+export default function Panel({ id, seasons, selectedSeason, setSelectedSeason, selectedEpisode, setSelectedEpisode }) {
   const saved = loadState(id)
   
-  const [selectedSeason, setSelectedSeason] = useState(saved.season || seasons[0]?.season_number || 1)
   const [range, setRange] = useState(saved.range || [1, 50])
-  const [selectedEp, setSelectedEp] = useState(saved.episode || 1)
-
   const listRef = useRef(null)
 
   const updateSeason = s => {
@@ -30,9 +27,8 @@ export default function Panel({ id, seasons, onEpisodeChange, triggerEpisode }) 
   }
 
   const updateEp = ep => {
-    setSelectedEp(ep)
+    setSelectedEpisode(ep)
     saveState(id, { episode: ep })
-    onEpisodeChange(selectedSeason, ep)
   }
 
   const current = seasons.find(s => s.season_number === selectedSeason)
@@ -53,11 +49,6 @@ export default function Panel({ id, seasons, onEpisodeChange, triggerEpisode }) 
       listRef.current.scrollTop = saved.scroll
     }
   }, [])
-  
-  useEffect(() => {
-    if (triggerEpisode == null) return
-    updateEp(triggerEpisode)
-  }, [triggerEpisode])
 
   const handleScroll = e => {
     saveState(id, { scroll: e.target.scrollTop })
@@ -108,7 +99,7 @@ export default function Panel({ id, seasons, onEpisodeChange, triggerEpisode }) 
               <div
                 key={ep.id}
                 onClick={() => updateEp(ep.episode_number)}
-                className={`p-2 bg-zinc-900 text-sm flex items-center justify-between cursor-pointer ${selectedEp === ep.episode_number ? "border-l-4 border-yellow-500" : "border-l-4 border-transparent"}`}
+                className={`p-2 bg-zinc-900 text-sm flex items-center justify-between cursor-pointer ${selectedEpisode === ep.episode_number ? "border-l-4 border-yellow-500" : "border-l-4 border-transparent"}`}
               >
                 <div className="overflow-hidden pr-2">
                   <p className="truncate text-sm">

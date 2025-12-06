@@ -1,0 +1,801 @@
+{
+  "animeMedia": [
+    {
+      "id": 21087,
+      "title": {
+        "english": "One-Punch Man",
+        "romaji": "One Punch Man"
+      },
+      "startDate": {
+        "year": 2015,
+        "month": 10,
+        "day": 5
+      },
+      "type": "ANIME",
+      "format": "TV",
+      "episodes": 12,
+      "duration": 24,
+      "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+      "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg"
+      },
+      "relations": {
+        "edges": [
+          {
+            "relationType": "SOURCE",
+            "node": {
+              "id": 74347,
+              "title": {
+                "english": "One-Punch Man",
+                "romaji": "One Punch-Man"
+              },
+              "startDate": {
+                "year": 2012,
+                "month": 6,
+                "day": 14
+              },
+              "type": "MANGA",
+              "format": "MANGA",
+              "episodes": null,
+              "duration": null,
+              "description": "In this new action-comedy, everything about a young man named Saitama screams \"AVERAGE,&rdquo; from his lifeless expression, to his bald head, to his unimpressive physique. However, this average-looking fellow doesn't have your average problem... He's actually a superhero that's looking for tough opponents! The problem is, every time he finds a promising candidate he beats the snot out of them in one punch. Can Saitama finally find an evil villain strong enough to challenge him? Follow Saitama through his hilarious romps as he searches for new bad guys to challenge!\n<br><br>\n(Source: Viz Media)",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx74347-sZpmNJ5xLwRK.jpg"
+              },
+              "relations": {
+                "edges": [
+                  {
+                    "relationType": "ADAPTATION",
+                    "node": {
+                      "id": 21087,
+                      "title": {
+                        "english": "One-Punch Man",
+                        "romaji": "One Punch Man"
+                      },
+                      "startDate": {
+                        "year": 2015,
+                        "month": 10,
+                        "day": 5
+                      },
+                      "type": "ANIME",
+                      "format": "TV",
+                      "episodes": 12,
+                      "duration": 24,
+                      "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "ADAPTATION",
+                    "node": {
+                      "id": 97668,
+                      "title": {
+                        "english": "One-Punch Man Season 2",
+                        "romaji": "One Punch Man 2"
+                      },
+                      "startDate": {
+                        "year": 2019,
+                        "month": 4,
+                        "day": 10
+                      },
+                      "type": "ANIME",
+                      "format": "TV",
+                      "episodes": 12,
+                      "duration": 24,
+                      "description": "Saitama is a hero who only became a hero for fun. After three years of “special training,” he’s become so strong that he’s practically invincible. In fact, he’s too strong—even his mightiest opponents are taken out with a single punch. Now, the great seer Madame Shibabawa’s prediction about the Earth being doomed seems to be coming true as the frequency of monster incidents escalates. Alongside Genos, his faithful disciple, Saitama begins his official hero duties as a member of the Hero Association, while Garou, a man utterly fascinated by monsters, makes his appearance.",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97668-nC8gQrXVxt7k.png"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "ADAPTATION",
+                    "node": {
+                      "id": 108945,
+                      "title": {
+                        "english": "One-Punch Man Season 2 OVA",
+                        "romaji": "One Punch Man 2 OVA"
+                      },
+                      "startDate": {
+                        "year": 2019,
+                        "month": 10,
+                        "day": 25
+                      },
+                      "type": "ANIME",
+                      "format": "OVA",
+                      "episodes": 6,
+                      "duration": 12,
+                      "description": "<i>Note: Unaired episodes included in the Blu-ray/DVD.</i>",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108945-snH9n5sN1vrb.png"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "ADAPTATION",
+                    "node": {
+                      "id": 21416,
+                      "title": {
+                        "english": "One-Punch Man OVA",
+                        "romaji": "One Punch Man OVA"
+                      },
+                      "startDate": {
+                        "year": 2015,
+                        "month": 12,
+                        "day": 24
+                      },
+                      "type": "ANIME",
+                      "format": "OVA",
+                      "episodes": 6,
+                      "duration": 13,
+                      "description": "Specials included in the DVD/BD volumes of the anime. They feature original stories written by the series' mangaka, ONE<br>\n<br>\nThe first special is titled \"Shinobiyori-sugiru Kage\" and takes place after Saitama's fight with Mosquito Girl, and it follows Genos as he is persistently and suspiciously prowling after Saitama trying to find out the secret of his strength. Additionally, a mysterious person appears who has a \"certain reason\" to hold a grudge against Saitama.<br>\n<br>\n2: Hanashibeta-sugiru Deishi<br>\n3: Kojire-sugiru Ninja<br>\n4: Gouin-sugiru Bang<br>\n5: Iroiro Ari-sugiru Kyoudai<br>\n6: Fukanou-sugiru Satsujin Jiken",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21416-IwCJBh54K3iw.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "ADAPTATION",
+                    "node": {
+                      "id": 21386,
+                      "title": {
+                        "english": "One-Punch Man: Road to Hero",
+                        "romaji": "One Punch Man: Road to Hero"
+                      },
+                      "startDate": {
+                        "year": 2015,
+                        "month": 12,
+                        "day": 4
+                      },
+                      "type": "ANIME",
+                      "format": "OVA",
+                      "episodes": 1,
+                      "duration": 24,
+                      "description": "OVA bundled with the 10th volume of the One Punch Man manga. It features an original story by the series' mangaka, ONE, about the secret story of the birth of Saitama's hero suit.",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21386-ZMcREWXeWMow.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "SIDE_STORY",
+                    "node": {
+                      "id": 139586,
+                      "title": {
+                        "english": null,
+                        "romaji": "Go! Saitama"
+                      },
+                      "startDate": {
+                        "year": 2021,
+                        "month": 9,
+                        "day": 23
+                      },
+                      "type": "ANIME",
+                      "format": "ONA",
+                      "episodes": 1,
+                      "duration": 2,
+                      "description": "Posted on Yuusuke Murata's twitter, the anime short follows Saitama after he discovers a 1-yen (about US$0.01) sale for high-grade hot-pot meat — but the sale ends at 5:00 p.m. that day.\n<br><br>\n(Source: Anime News Network, edited)",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx139586-Bd6VA8DW1CsY.png"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "ALTERNATIVE",
+                    "node": {
+                      "id": 85364,
+                      "title": {
+                        "english": null,
+                        "romaji": "One Punch Man"
+                      },
+                      "startDate": {
+                        "year": 2009,
+                        "month": 7,
+                        "day": 3
+                      },
+                      "type": "MANGA",
+                      "format": "MANGA",
+                      "episodes": null,
+                      "duration": null,
+                      "description": "Follows the life of a hero who manages to win all battles with only one punch. This ability seems to frustrate him as he no longer feels the thrill and adrenaline of fighting a tough battle, which leads to him questioning his past desire of being strong.\n<br><br>\nThe original drawn by ONE.",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx85364-O28PUKbABg8y.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "ADAPTATION",
+                    "node": {
+                      "id": 153800,
+                      "title": {
+                        "english": "One-Punch Man Season 3",
+                        "romaji": "One Punch Man 3"
+                      },
+                      "startDate": {
+                        "year": 2025,
+                        "month": 10,
+                        "day": 12
+                      },
+                      "type": "ANIME",
+                      "format": "TV",
+                      "episodes": 12,
+                      "duration": 24,
+                      "description": "The third season of <i>One Punch Man</i>.<br><br>\nSaitama is a hero who only became a hero for fun. After three years of \"special training,\" he’s become so strong that he's practically invincible. In fact, he's too strong—even his mightiest opponents are taken out with a single punch. Alongside Genos, his faithful disciple, Saitama performs his official hero duties as a member of the Hero Association.<br><br>\nOne day, monsters claiming to be from the Monster Association suddenly appeared, taking a child of Hero Association executive hostage. The S-class heroes gather and plan a raid on the Monster Association hideout to rescue the hostage. Meanwhile, Garou, a \"human monster\" who was taken by the Monster Association during a battle with the heroes, awakens in the Monster Association hideout.<br><br>\n(Source: EMOTION Label YouTube Channel Description)<br><br>\n<i>Note: Excludes recap episode that aired a week before regular broadcast.</i>",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx153800-8SpzdHOaZCoU.jpg"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "relationType": "SIDE_STORY",
+            "node": {
+              "id": 21416,
+              "title": {
+                "english": "One-Punch Man OVA",
+                "romaji": "One Punch Man OVA"
+              },
+              "startDate": {
+                "year": 2015,
+                "month": 12,
+                "day": 24
+              },
+              "type": "ANIME",
+              "format": "OVA",
+              "episodes": 6,
+              "duration": 13,
+              "description": "Specials included in the DVD/BD volumes of the anime. They feature original stories written by the series' mangaka, ONE<br>\n<br>\nThe first special is titled \"Shinobiyori-sugiru Kage\" and takes place after Saitama's fight with Mosquito Girl, and it follows Genos as he is persistently and suspiciously prowling after Saitama trying to find out the secret of his strength. Additionally, a mysterious person appears who has a \"certain reason\" to hold a grudge against Saitama.<br>\n<br>\n2: Hanashibeta-sugiru Deishi<br>\n3: Kojire-sugiru Ninja<br>\n4: Gouin-sugiru Bang<br>\n5: Iroiro Ari-sugiru Kyoudai<br>\n6: Fukanou-sugiru Satsujin Jiken",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21416-IwCJBh54K3iw.jpg"
+              },
+              "relations": {
+                "edges": [
+                  {
+                    "relationType": "PARENT",
+                    "node": {
+                      "id": 21087,
+                      "title": {
+                        "english": "One-Punch Man",
+                        "romaji": "One Punch Man"
+                      },
+                      "startDate": {
+                        "year": 2015,
+                        "month": 10,
+                        "day": 5
+                      },
+                      "type": "ANIME",
+                      "format": "TV",
+                      "episodes": 12,
+                      "duration": 24,
+                      "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "SOURCE",
+                    "node": {
+                      "id": 74347,
+                      "title": {
+                        "english": "One-Punch Man",
+                        "romaji": "One Punch-Man"
+                      },
+                      "startDate": {
+                        "year": 2012,
+                        "month": 6,
+                        "day": 14
+                      },
+                      "type": "MANGA",
+                      "format": "MANGA",
+                      "episodes": null,
+                      "duration": null,
+                      "description": "In this new action-comedy, everything about a young man named Saitama screams \"AVERAGE,&rdquo; from his lifeless expression, to his bald head, to his unimpressive physique. However, this average-looking fellow doesn't have your average problem... He's actually a superhero that's looking for tough opponents! The problem is, every time he finds a promising candidate he beats the snot out of them in one punch. Can Saitama finally find an evil villain strong enough to challenge him? Follow Saitama through his hilarious romps as he searches for new bad guys to challenge!\n<br><br>\n(Source: Viz Media)",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx74347-sZpmNJ5xLwRK.jpg"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "relationType": "SEQUEL",
+            "node": {
+              "id": 97668,
+              "title": {
+                "english": "One-Punch Man Season 2",
+                "romaji": "One Punch Man 2"
+              },
+              "startDate": {
+                "year": 2019,
+                "month": 4,
+                "day": 10
+              },
+              "type": "ANIME",
+              "format": "TV",
+              "episodes": 12,
+              "duration": 24,
+              "description": "Saitama is a hero who only became a hero for fun. After three years of “special training,” he’s become so strong that he’s practically invincible. In fact, he’s too strong—even his mightiest opponents are taken out with a single punch. Now, the great seer Madame Shibabawa’s prediction about the Earth being doomed seems to be coming true as the frequency of monster incidents escalates. Alongside Genos, his faithful disciple, Saitama begins his official hero duties as a member of the Hero Association, while Garou, a man utterly fascinated by monsters, makes his appearance.",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97668-nC8gQrXVxt7k.png"
+              },
+              "relations": {
+                "edges": [
+                  {
+                    "relationType": "PREQUEL",
+                    "node": {
+                      "id": 21087,
+                      "title": {
+                        "english": "One-Punch Man",
+                        "romaji": "One Punch Man"
+                      },
+                      "startDate": {
+                        "year": 2015,
+                        "month": 10,
+                        "day": 5
+                      },
+                      "type": "ANIME",
+                      "format": "TV",
+                      "episodes": 12,
+                      "duration": 24,
+                      "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "SOURCE",
+                    "node": {
+                      "id": 74347,
+                      "title": {
+                        "english": "One-Punch Man",
+                        "romaji": "One Punch-Man"
+                      },
+                      "startDate": {
+                        "year": 2012,
+                        "month": 6,
+                        "day": 14
+                      },
+                      "type": "MANGA",
+                      "format": "MANGA",
+                      "episodes": null,
+                      "duration": null,
+                      "description": "In this new action-comedy, everything about a young man named Saitama screams \"AVERAGE,&rdquo; from his lifeless expression, to his bald head, to his unimpressive physique. However, this average-looking fellow doesn't have your average problem... He's actually a superhero that's looking for tough opponents! The problem is, every time he finds a promising candidate he beats the snot out of them in one punch. Can Saitama finally find an evil villain strong enough to challenge him? Follow Saitama through his hilarious romps as he searches for new bad guys to challenge!\n<br><br>\n(Source: Viz Media)",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx74347-sZpmNJ5xLwRK.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "SIDE_STORY",
+                    "node": {
+                      "id": 108945,
+                      "title": {
+                        "english": "One-Punch Man Season 2 OVA",
+                        "romaji": "One Punch Man 2 OVA"
+                      },
+                      "startDate": {
+                        "year": 2019,
+                        "month": 10,
+                        "day": 25
+                      },
+                      "type": "ANIME",
+                      "format": "OVA",
+                      "episodes": 6,
+                      "duration": 12,
+                      "description": "<i>Note: Unaired episodes included in the Blu-ray/DVD.</i>",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108945-snH9n5sN1vrb.png"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "SEQUEL",
+                    "node": {
+                      "id": 153800,
+                      "title": {
+                        "english": "One-Punch Man Season 3",
+                        "romaji": "One Punch Man 3"
+                      },
+                      "startDate": {
+                        "year": 2025,
+                        "month": 10,
+                        "day": 12
+                      },
+                      "type": "ANIME",
+                      "format": "TV",
+                      "episodes": 12,
+                      "duration": 24,
+                      "description": "The third season of <i>One Punch Man</i>.<br><br>\nSaitama is a hero who only became a hero for fun. After three years of \"special training,\" he’s become so strong that he's practically invincible. In fact, he's too strong—even his mightiest opponents are taken out with a single punch. Alongside Genos, his faithful disciple, Saitama performs his official hero duties as a member of the Hero Association.<br><br>\nOne day, monsters claiming to be from the Monster Association suddenly appeared, taking a child of Hero Association executive hostage. The S-class heroes gather and plan a raid on the Monster Association hideout to rescue the hostage. Meanwhile, Garou, a \"human monster\" who was taken by the Monster Association during a battle with the heroes, awakens in the Monster Association hideout.<br><br>\n(Source: EMOTION Label YouTube Channel Description)<br><br>\n<i>Note: Excludes recap episode that aired a week before regular broadcast.</i>",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx153800-8SpzdHOaZCoU.jpg"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "relationType": "PREQUEL",
+            "node": {
+              "id": 21386,
+              "title": {
+                "english": "One-Punch Man: Road to Hero",
+                "romaji": "One Punch Man: Road to Hero"
+              },
+              "startDate": {
+                "year": 2015,
+                "month": 12,
+                "day": 4
+              },
+              "type": "ANIME",
+              "format": "OVA",
+              "episodes": 1,
+              "duration": 24,
+              "description": "OVA bundled with the 10th volume of the One Punch Man manga. It features an original story by the series' mangaka, ONE, about the secret story of the birth of Saitama's hero suit.",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21386-ZMcREWXeWMow.jpg"
+              },
+              "relations": {
+                "edges": [
+                  {
+                    "relationType": "SEQUEL",
+                    "node": {
+                      "id": 21087,
+                      "title": {
+                        "english": "One-Punch Man",
+                        "romaji": "One Punch Man"
+                      },
+                      "startDate": {
+                        "year": 2015,
+                        "month": 10,
+                        "day": 5
+                      },
+                      "type": "ANIME",
+                      "format": "TV",
+                      "episodes": 12,
+                      "duration": 24,
+                      "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "relationType": "SOURCE",
+                    "node": {
+                      "id": 74347,
+                      "title": {
+                        "english": "One-Punch Man",
+                        "romaji": "One Punch-Man"
+                      },
+                      "startDate": {
+                        "year": 2012,
+                        "month": 6,
+                        "day": 14
+                      },
+                      "type": "MANGA",
+                      "format": "MANGA",
+                      "episodes": null,
+                      "duration": null,
+                      "description": "In this new action-comedy, everything about a young man named Saitama screams \"AVERAGE,&rdquo; from his lifeless expression, to his bald head, to his unimpressive physique. However, this average-looking fellow doesn't have your average problem... He's actually a superhero that's looking for tough opponents! The problem is, every time he finds a promising candidate he beats the snot out of them in one punch. Can Saitama finally find an evil villain strong enough to challenge him? Follow Saitama through his hilarious romps as he searches for new bad guys to challenge!\n<br><br>\n(Source: Viz Media)",
+                      "coverImage": {
+                        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx74347-sZpmNJ5xLwRK.jpg"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 21386,
+      "title": {
+        "english": "One-Punch Man: Road to Hero",
+        "romaji": "One Punch Man: Road to Hero"
+      },
+      "startDate": {
+        "year": 2015,
+        "month": 12,
+        "day": 4
+      },
+      "type": "ANIME",
+      "format": "OVA",
+      "episodes": 1,
+      "duration": 24,
+      "description": "OVA bundled with the 10th volume of the One Punch Man manga. It features an original story by the series' mangaka, ONE, about the secret story of the birth of Saitama's hero suit.",
+      "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21386-ZMcREWXeWMow.jpg"
+      },
+      "relations": {
+        "edges": [
+          {
+            "relationType": "SEQUEL",
+            "node": {
+              "id": 21087,
+              "title": {
+                "english": "One-Punch Man",
+                "romaji": "One Punch Man"
+              },
+              "startDate": {
+                "year": 2015,
+                "month": 10,
+                "day": 5
+              },
+              "type": "ANIME",
+              "format": "TV",
+              "episodes": 12,
+              "duration": 24,
+              "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg"
+              }
+            }
+          },
+          {
+            "relationType": "SOURCE",
+            "node": {
+              "id": 74347,
+              "title": {
+                "english": "One-Punch Man",
+                "romaji": "One Punch-Man"
+              },
+              "startDate": {
+                "year": 2012,
+                "month": 6,
+                "day": 14
+              },
+              "type": "MANGA",
+              "format": "MANGA",
+              "episodes": null,
+              "duration": null,
+              "description": "In this new action-comedy, everything about a young man named Saitama screams \"AVERAGE,&rdquo; from his lifeless expression, to his bald head, to his unimpressive physique. However, this average-looking fellow doesn't have your average problem... He's actually a superhero that's looking for tough opponents! The problem is, every time he finds a promising candidate he beats the snot out of them in one punch. Can Saitama finally find an evil villain strong enough to challenge him? Follow Saitama through his hilarious romps as he searches for new bad guys to challenge!\n<br><br>\n(Source: Viz Media)",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx74347-sZpmNJ5xLwRK.jpg"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 21416,
+      "title": {
+        "english": "One-Punch Man OVA",
+        "romaji": "One Punch Man OVA"
+      },
+      "startDate": {
+        "year": 2015,
+        "month": 12,
+        "day": 24
+      },
+      "type": "ANIME",
+      "format": "OVA",
+      "episodes": 6,
+      "duration": 13,
+      "description": "Specials included in the DVD/BD volumes of the anime. They feature original stories written by the series' mangaka, ONE<br>\n<br>\nThe first special is titled \"Shinobiyori-sugiru Kage\" and takes place after Saitama's fight with Mosquito Girl, and it follows Genos as he is persistently and suspiciously prowling after Saitama trying to find out the secret of his strength. Additionally, a mysterious person appears who has a \"certain reason\" to hold a grudge against Saitama.<br>\n<br>\n2: Hanashibeta-sugiru Deishi<br>\n3: Kojire-sugiru Ninja<br>\n4: Gouin-sugiru Bang<br>\n5: Iroiro Ari-sugiru Kyoudai<br>\n6: Fukanou-sugiru Satsujin Jiken",
+      "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21416-IwCJBh54K3iw.jpg"
+      },
+      "relations": {
+        "edges": [
+          {
+            "relationType": "PARENT",
+            "node": {
+              "id": 21087,
+              "title": {
+                "english": "One-Punch Man",
+                "romaji": "One Punch Man"
+              },
+              "startDate": {
+                "year": 2015,
+                "month": 10,
+                "day": 5
+              },
+              "type": "ANIME",
+              "format": "TV",
+              "episodes": 12,
+              "duration": 24,
+              "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg"
+              }
+            }
+          },
+          {
+            "relationType": "SOURCE",
+            "node": {
+              "id": 74347,
+              "title": {
+                "english": "One-Punch Man",
+                "romaji": "One Punch-Man"
+              },
+              "startDate": {
+                "year": 2012,
+                "month": 6,
+                "day": 14
+              },
+              "type": "MANGA",
+              "format": "MANGA",
+              "episodes": null,
+              "duration": null,
+              "description": "In this new action-comedy, everything about a young man named Saitama screams \"AVERAGE,&rdquo; from his lifeless expression, to his bald head, to his unimpressive physique. However, this average-looking fellow doesn't have your average problem... He's actually a superhero that's looking for tough opponents! The problem is, every time he finds a promising candidate he beats the snot out of them in one punch. Can Saitama finally find an evil villain strong enough to challenge him? Follow Saitama through his hilarious romps as he searches for new bad guys to challenge!\n<br><br>\n(Source: Viz Media)",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx74347-sZpmNJ5xLwRK.jpg"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 97668,
+      "title": {
+        "english": "One-Punch Man Season 2",
+        "romaji": "One Punch Man 2"
+      },
+      "startDate": {
+        "year": 2019,
+        "month": 4,
+        "day": 10
+      },
+      "type": "ANIME",
+      "format": "TV",
+      "episodes": 12,
+      "duration": 24,
+      "description": "Saitama is a hero who only became a hero for fun. After three years of “special training,” he’s become so strong that he’s practically invincible. In fact, he’s too strong—even his mightiest opponents are taken out with a single punch. Now, the great seer Madame Shibabawa’s prediction about the Earth being doomed seems to be coming true as the frequency of monster incidents escalates. Alongside Genos, his faithful disciple, Saitama begins his official hero duties as a member of the Hero Association, while Garou, a man utterly fascinated by monsters, makes his appearance.",
+      "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97668-nC8gQrXVxt7k.png"
+      },
+      "relations": {
+        "edges": [
+          {
+            "relationType": "PREQUEL",
+            "node": {
+              "id": 21087,
+              "title": {
+                "english": "One-Punch Man",
+                "romaji": "One Punch Man"
+              },
+              "startDate": {
+                "year": 2015,
+                "month": 10,
+                "day": 5
+              },
+              "type": "ANIME",
+              "format": "TV",
+              "episodes": 12,
+              "duration": 24,
+              "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg"
+              }
+            }
+          },
+          {
+            "relationType": "SOURCE",
+            "node": {
+              "id": 74347,
+              "title": {
+                "english": "One-Punch Man",
+                "romaji": "One Punch-Man"
+              },
+              "startDate": {
+                "year": 2012,
+                "month": 6,
+                "day": 14
+              },
+              "type": "MANGA",
+              "format": "MANGA",
+              "episodes": null,
+              "duration": null,
+              "description": "In this new action-comedy, everything about a young man named Saitama screams \"AVERAGE,&rdquo; from his lifeless expression, to his bald head, to his unimpressive physique. However, this average-looking fellow doesn't have your average problem... He's actually a superhero that's looking for tough opponents! The problem is, every time he finds a promising candidate he beats the snot out of them in one punch. Can Saitama finally find an evil villain strong enough to challenge him? Follow Saitama through his hilarious romps as he searches for new bad guys to challenge!\n<br><br>\n(Source: Viz Media)",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx74347-sZpmNJ5xLwRK.jpg"
+              }
+            }
+          },
+          {
+            "relationType": "SIDE_STORY",
+            "node": {
+              "id": 108945,
+              "title": {
+                "english": "One-Punch Man Season 2 OVA",
+                "romaji": "One Punch Man 2 OVA"
+              },
+              "startDate": {
+                "year": 2019,
+                "month": 10,
+                "day": 25
+              },
+              "type": "ANIME",
+              "format": "OVA",
+              "episodes": 6,
+              "duration": 12,
+              "description": "<i>Note: Unaired episodes included in the Blu-ray/DVD.</i>",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108945-snH9n5sN1vrb.png"
+              }
+            }
+          },
+          {
+            "relationType": "SEQUEL",
+            "node": {
+              "id": 153800,
+              "title": {
+                "english": "One-Punch Man Season 3",
+                "romaji": "One Punch Man 3"
+              },
+              "startDate": {
+                "year": 2025,
+                "month": 10,
+                "day": 12
+              },
+              "type": "ANIME",
+              "format": "TV",
+              "episodes": 12,
+              "duration": 24,
+              "description": "The third season of <i>One Punch Man</i>.<br><br>\nSaitama is a hero who only became a hero for fun. After three years of \"special training,\" he’s become so strong that he's practically invincible. In fact, he's too strong—even his mightiest opponents are taken out with a single punch. Alongside Genos, his faithful disciple, Saitama performs his official hero duties as a member of the Hero Association.<br><br>\nOne day, monsters claiming to be from the Monster Association suddenly appeared, taking a child of Hero Association executive hostage. The S-class heroes gather and plan a raid on the Monster Association hideout to rescue the hostage. Meanwhile, Garou, a \"human monster\" who was taken by the Monster Association during a battle with the heroes, awakens in the Monster Association hideout.<br><br>\n(Source: EMOTION Label YouTube Channel Description)<br><br>\n<i>Note: Excludes recap episode that aired a week before regular broadcast.</i>",
+              "coverImage": {
+                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx153800-8SpzdHOaZCoU.jpg"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 108945,
+      "title": {
+        "english": "One-Punch Man Season 2 OVA",
+        "romaji": "One Punch Man 2 OVA"
+      },
+      "startDate": {
+        "year": 2019,
+        "month": 10,
+        "day": 25
+      },
+      "type": "ANIME",
+      "format": "OVA",
+      "episodes": 6,
+      "duration": 12,
+      "description": "<i>Note: Unaired episodes included in the Blu-ray/DVD.</i>",
+      "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108945-snH9n5sN1vrb.png"
+      }
+    },
+    {
+      "id": 153800,
+      "title": {
+        "english": "One-Punch Man Season 3",
+        "romaji": "One Punch Man 3"
+      },
+      "startDate": {
+        "year": 2025,
+        "month": 10,
+        "day": 12
+      },
+      "type": "ANIME",
+      "format": "TV",
+      "episodes": 12,
+      "duration": 24,
+      "description": "The third season of <i>One Punch Man</i>.<br><br>\nSaitama is a hero who only became a hero for fun. After three years of \"special training,\" he’s become so strong that he's practically invincible. In fact, he's too strong—even his mightiest opponents are taken out with a single punch. Alongside Genos, his faithful disciple, Saitama performs his official hero duties as a member of the Hero Association.<br><br>\nOne day, monsters claiming to be from the Monster Association suddenly appeared, taking a child of Hero Association executive hostage. The S-class heroes gather and plan a raid on the Monster Association hideout to rescue the hostage. Meanwhile, Garou, a \"human monster\" who was taken by the Monster Association during a battle with the heroes, awakens in the Monster Association hideout.<br><br>\n(Source: EMOTION Label YouTube Channel Description)<br><br>\n<i>Note: Excludes recap episode that aired a week before regular broadcast.</i>",
+      "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx153800-8SpzdHOaZCoU.jpg"
+      }
+    }
+  ],
+  "animeInitialIndex": 0
+}

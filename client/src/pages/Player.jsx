@@ -14,6 +14,11 @@ function loadState(id) {
   return JSON.parse(localStorage.getItem("player_state" + id)) || {}
 }
 
+function saveState(id, data) {
+  const old = loadState(id)
+  localStorage.setItem("player_state" + id, JSON.stringify({ ...old, ...data }))
+}
+
 function saveHistory(item) {
   let list = JSON.parse(localStorage.getItem("watch_history")) || []
 
@@ -41,31 +46,31 @@ export default function Player() {
   const navigate = useNavigate()
   const BASE_URL = import.meta.env.VITE_SOURCE_BASE
   
+  const saved = loadState(id)
+  
   const [media, setMedia] = useState(null)
-  const [animeMedia, setAnimeMedia] = useState(null)
-  const [animeInitialIndex, setAnimeInitialIndex] = useState(0);
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
-  const [externalEpisode, setExternalEpisode] = useState(null)
+  const [selectedSeason, setSelectedSeason] = useState(0)
+  const [selectedEpisode, setSelectedEpisode] = useState(0)
+  const [autoEpisode, setAutoEpisode] = useState(null)
 
   useEffect(() => {
     async function load() {
       const data = await fetchMediaData(id, type)
       setMedia(data)
       
-      const animeData = await fetchAnimeMedia(data);
-      setAnimeMedia(animeData.animeMedia);
-      setAnimeInitialIndex(animeData.initialIndex);
-      
       const recMedia = await fetchRecommendedMedia(id, type)
       setRecommendedMedia(recMedia)
       
       if (type === "tv") {
-        const saved = loadState(id)
-        const s = saved.season || 1
-        const e = saved.episode || 1
-        setMediaUrl(`${BASE_URL}${type}/${id}/${s}/${e}?${ADD_ONS}`)
+        const season = saved.season || data.seasonData[0]?.season_number || 1
+        const episode = saved.episode || 1
+        
+        setSelectedSeason(season)
+        setSelectedEpisode(episode)
+        setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${ADD_ONS}`)
       }
       
       if (type === "movie") {
@@ -75,28 +80,37 @@ export default function Player() {
     load()
   }, [id, type])
   
-  const handleEpisodeChange = (season, episode) => {
-    setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${ADD_ONS}`)
-  }
+  useEffect(() => {
+    if (type === "tv") {
+        setMediaUrl(`${BASE_URL}${type}/${id}/${selectedSeason}/${selectedEpisode}?${ADD_ONS}`)
+      }
+  }, [selectedSeason, selectedEpisode])
   
+  useEffect(() => {
+    if (!autoEpisode) return
+    if (autoEpisode === selectedEpisode) return
+
+    setSelectedEpisode(autoEpisode)
+  }, [autoEpisode])
+
   // To save history and trigger episode change
   useEffect(() => {
-    if (!media) return;
+    if (!media) return
 
     const handleMsg = (e) => {
-      if (!e.data) return;
+      if (!e.data) return
 
       let parsed;
-      try { parsed = JSON.parse(e.data); } catch { return }
-      if (parsed.type !== "MEDIA_DATA") return;
+      try { parsed = JSON.parse(e.data) } catch { return }
+      if (parsed.type !== "MEDIA_DATA") return
 
-      let data;
-      try { data = JSON.parse(parsed.data); } catch { return }
+      let data
+      try { data = JSON.parse(parsed.data) } catch { return }
 
-      const current = data[`${media.type}-${media.id}`];
-      if (!current) return;
+      const current = data[`${media.type}-${media.id}`]
+      if (!current) return
 
-      const watched = current.progress?.watched;
+      const watched = current.progress?.watched
       if (watched > 0) {
         saveHistory({
           id: media.id,
@@ -104,17 +118,20 @@ export default function Player() {
           poster_path: media.poster_path,
           backdrop_path: media.backdrop_path,
           type: media.type
-        });
+        })
       }
+      
+      const newSaved = loadState(id)
 
       if (media.type === "tv" && current.last_episode_watched) {
-        setExternalEpisode(current.last_episode_watched);
+        setAutoEpisode(current.last_episode_watched)
+        saveState(id, { episode: current.last_episode_watched })
       }
-    };
+    }
 
-    window.addEventListener("message", handleMsg);
-    return () => window.removeEventListener("message", handleMsg);
-  }, [media]);
+    window.addEventListener("message", handleMsg)
+    return () => window.removeEventListener("message", handleMsg)
+  }, [media])
   
   if (!media) return <div className="min-h-screen bg-black text-white px-4 py-3">
     <p className="text-center text-white mt-10">Loading...</p>
@@ -143,7 +160,12 @@ export default function Player() {
       <Details media={media} />
       
       {media.type === "tv" && (
-        <Panel id={media.id} seasons={media.seasonsData} onEpisodeChange={handleEpisodeChange} triggerEpisode={externalEpisode} />
+        <Panel id={media.id} seasons={media.seasonsData} 
+          selectedSeason={selectedSeason}
+          setSelectedSeason={setSelectedSeason}
+          selectedEpisode={selectedEpisode}
+          setSelectedEpisode={setSelectedEpisode} 
+        />
       )}
       
       {/* Recommended Section */}
