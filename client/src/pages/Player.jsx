@@ -50,7 +50,7 @@ export default function Player() {
   
   const [media, setMedia] = useState(null)
   const [animeId, setAnimeId] = useState(null)
-  const [animeMedia, setAnimeMedia] = useState(null)
+  const [animeMedia, setAnimeMedia] = useState(undefined)
   const [isDub, setIsDub] = useState(Cookies.get("anime_dub") === "true")
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
@@ -65,19 +65,22 @@ export default function Player() {
       setMedia(data)
       
       const animeData = await fetchAnimeMedia(data)
-      setAnimeMedia(animeData.animeMedia)
-      setSelectedSeason(animeData.animeInitialIndex)
-      setAnimeId(animeData.animeMedia[animeData.animeInitialIndex].id)
       
       const recMedia = await fetchRecommendedMedia(id, type)
       setRecommendedMedia(recMedia)
       
       if (animeData) {
+        setAnimeMedia(animeData.animeMedia || [])
+        setSelectedSeason(animeData.animeInitialIndex)
+        setAnimeId(animeData.animeMedia[animeData.animeInitialIndex].id)
+        
         const saved = loadState(animeId)
         const episode = saved.episode || 1
         
         setMediaUrl(`${BASE_URL}anime/${animeId}/${episode}?${ADD_ONS}`)
       } else {
+        setAnimeMedia([])
+        
         if (type === "tv") {
           const saved = loadState(id)
           const season = saved.season || 1
@@ -97,9 +100,11 @@ export default function Player() {
   }, [id, type])
   
   useEffect(() => {
+    if (animeMedia === undefined) return
+    
     const DUB_PARAM = isDub ? "&dub=true" : "&dub=false"
     
-    if (animeMedia) {
+    if (animeMedia.length > 0) {
       setMediaUrl(`${BASE_URL}anime/${animeId}/${selectedEpisode}?${ADD_ONS}${DUB_PARAM}`)
     } else {
       if (type === "tv") {
@@ -181,7 +186,7 @@ export default function Player() {
       {/* Details */}
       <Details media={media} />
       
-      {animeMedia && animeMedia.length > 0 && (
+      {animeMedia !== undefined && animeMedia.length > 0 && (
         <div className="my-4 flex items-center">
           <button
             className={`py-1 px-3 text-sm ${!isDub ? "bg-yellow-500 text-black" : "bg-zinc-900"}`}
@@ -199,7 +204,9 @@ export default function Player() {
       )}
       
       {/* Multi-Panel Section */}
-      {animeMedia && animeMedia.length > 0 ? (
+      {animeMedia === undefined ? (
+        <p className="text-center text-white mt-4">Loading...</p>
+      ) : animeMedia.length > 0 ? (
           <AnimePanel
             id={id}
             animeId={animeId}
@@ -210,8 +217,8 @@ export default function Player() {
             selectedEpisode={selectedEpisode}
             setSelectedEpisode={setSelectedEpisode}
           />
-        ) : (
-          media.type === "tv" && (
+      ) : (
+        media.type === "tv" && (
           <Panel
             id={media.id}
             seasons={media.seasonsData}
