@@ -38,5 +38,5 @@ npm run dev
 ## Details
 
 Owner: varunbala2237
-Repository: [https://github.com/varunbala2237/cine-flix](https://github.com/varunbala2237/cine-flix)
+[https://github.com/varunbala2237/cine-flix](https://github.com/varunbala2237/cine-flix)
 Last updated: 07/12/2025
