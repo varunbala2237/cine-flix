@@ -3,19 +3,20 @@
 A portable web application for streaming movies, TV shows & anime.
 
 ## Features
-- Stream movies, TV shows, and anime
-- Save history
-- Sub/Dub available
-- Recommendations
+- Latest & Trending content
+- Search for content
+- Dynamic TMDB to AniList mapping
+- Recommendations content
 
 ## Setup
 
 Create .env file with the following keys:
 
-```bash
-VITE_TMDB_API_KEY=e94054f6b13b82c7bf07961764c420ff
+```env
+VITE_TMDB_API_KEY=...
 VITE_ANILIST_BASE=https://graphql.anilist.co
-VITE_SOURCE_BASE=https://player.videasy.net/
+VITE_SOURCE_BASE=...
+```
 
 Now, in your terminal type these commands:
 
@@ -24,6 +25,7 @@ git clone https://github.com/varunbala2237/cine-flix.git
 cd cine-flix/client
 npm install
 npm run dev
+```
 
 ## Details
 
