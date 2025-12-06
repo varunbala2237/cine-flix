@@ -46,9 +46,9 @@ export default function Player() {
   const navigate = useNavigate()
   const BASE_URL = import.meta.env.VITE_SOURCE_BASE
   
-  const saved = loadState(id)
-  
   const [media, setMedia] = useState(null)
+  const [animeId, setAnimeId] = useState(null)
+  const [animeMedia, setAnimeMedia] = useState(null)
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
@@ -65,6 +65,7 @@ export default function Player() {
       setRecommendedMedia(recMedia)
       
       if (type === "tv") {
+        const saved = loadState(id)
         const season = saved.season || 1
         const episode = saved.episode || 1
         
@@ -120,8 +121,6 @@ export default function Player() {
           type: media.type
         })
       }
-      
-      const newSaved = loadState(id)
 
       if (media.type === "tv" && current.last_episode_watched) {
         setAutoEpisode(current.last_episode_watched)
