@@ -37,5 +37,5 @@ npm run dev
 
 ## Details
 
-Owner: [https://github.com/varunbala2237/cine-flix](varunbala2237)  
+Owner: [varunbala2237](https://github.com/varunbala2237/cine-flix)  
 Last updated: 07/12/2025
