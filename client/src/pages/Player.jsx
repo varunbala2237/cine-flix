@@ -4,6 +4,7 @@ import { Home as HomeIcon } from "lucide-react"
 import Header from "../components/Header"
 import Details from "../components/Details"
 import Panel from "../components/Panel"
+import AnimePanel from "../components/AnimePanel"
 import Recommended from "../components/Recommended"
 import { fetchMediaData } from "../api/fetchMediaData"
 import { fetchAnimeMedia } from "../api/fetchAnimeMedia"
@@ -52,8 +53,8 @@ export default function Player() {
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
-  const [selectedSeason, setSelectedSeason] = useState(null)
-  const [selectedEpisode, setSelectedEpisode] = useState(null)
+  const [selectedSeason, setSelectedSeason] = useState(1)
+  const [selectedEpisode, setSelectedEpisode] = useState(1)
   const [autoEpisode, setAutoEpisode] = useState(null)
 
   useEffect(() => {
@@ -61,30 +62,45 @@ export default function Player() {
       const data = await fetchMediaData(id, type)
       setMedia(data)
       
+      const animeData = await fetchAnimeMedia(data)
+      setAnimeMedia(animeData.animeMedia)
+      selectedSeason(animeData.animeInitialIndex)
+      
       const recMedia = await fetchRecommendedMedia(id, type)
       setRecommendedMedia(recMedia)
       
-      if (type === "tv") {
-        const saved = loadState(id)
-        const season = saved.season || 1
+      if (animeData) {
+        const saved = loadState(animeId)
         const episode = saved.episode || 1
         
-        setSelectedSeason(season)
-        setSelectedEpisode(episode)
-        setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${ADD_ONS}`)
-      }
+        setMediaUrl(`${BASE_URL}anime/${animeId}/${episode}?${ADD_ONS}`)
+      } else {
+        if (type === "tv") {
+          const saved = loadState(id)
+          const season = saved.season || 1
+          const episode = saved.episode || 1
+        
+          setSelectedSeason(season)
+          setSelectedEpisode(episode)
+          setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${ADD_ONS}`)
+        }
       
-      if (type === "movie") {
-        setMediaUrl(`${BASE_URL}${type}/${id}?${ADD_ONS}`)
+        if (type === "movie") {
+          setMediaUrl(`${BASE_URL}${type}/${id}?${ADD_ONS}`)
+        }
       }
     }
     load()
   }, [id, type])
   
   useEffect(() => {
-    if (type === "tv") {
+    if (animeMedia) {
+      setMediaUrl(`${BASE_URL}anime/${animeId}/${selectedEpisode}?${ADD_ONS}`)
+    } else {
+      if (type === "tv") {
         setMediaUrl(`${BASE_URL}${type}/${id}/${selectedSeason}/${selectedEpisode}?${ADD_ONS}`)
       }
+    }
   }, [selectedSeason, selectedEpisode])
   
   useEffect(() => {
@@ -108,7 +124,7 @@ export default function Player() {
       let data
       try { data = JSON.parse(parsed.data) } catch { return }
 
-      const current = data[`${media.type}-${media.id}`]
+      const current = data[`${type}-${id}`]
       if (!current) return
 
       const watched = current.progress?.watched
@@ -158,13 +174,27 @@ export default function Player() {
       {/* Details */}
       <Details media={media} />
       
-      {media.type === "tv" && (
-        <Panel id={media.id} seasons={media.seasonsData} 
-          selectedSeason={selectedSeason}
-          setSelectedSeason={setSelectedSeason}
+      {/* Panel Section */}
+      {animeMedia ? (
+        <AnimePanel
+          animeId={animeId}
+          animeMedia={animeMedia}
+          selectedRelation={selectedSeason}
+          setSelectedRelation={setSelectedSeason}
           selectedEpisode={selectedEpisode}
-          setSelectedEpisode={setSelectedEpisode} 
+          setSelectedEpisode={setSelectedEpisode}
         />
+      ) : (
+        media.type === "tv" && (
+          <Panel 
+            id={media.id}
+            seasons={media.seasonsData} 
+            selectedSeason={selectedSeason}
+            setSelectedSeason={setSelectedSeason}
+            selectedEpisode={selectedEpisode}
+            setSelectedEpisode={setSelectedEpisode} 
+          />
+        )
       )}
       
       {/* Recommended Section */}
