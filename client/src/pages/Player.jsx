@@ -52,8 +52,8 @@ export default function Player() {
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
-  const [selectedSeason, setSelectedSeason] = useState(0)
-  const [selectedEpisode, setSelectedEpisode] = useState(0)
+  const [selectedSeason, setSelectedSeason] = useState(null)
+  const [selectedEpisode, setSelectedEpisode] = useState(null)
   const [autoEpisode, setAutoEpisode] = useState(null)
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function Player() {
       setRecommendedMedia(recMedia)
       
       if (type === "tv") {
-        const season = saved.season || data.seasonData[0]?.season_number || 1
+        const season = saved.season || 1
         const episode = saved.episode || 1
         
         setSelectedSeason(season)
