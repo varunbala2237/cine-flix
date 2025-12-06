@@ -1,121 +1,148 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react"
 
-// Heplers for local storage
+// Helpers for Local Storage
 function loadState(id) {
-  return JSON.parse(localStorage.getItem("player_state" + id)) || {};
+  return JSON.parse(localStorage.getItem("player_state" + id)) || {}
 }
 
 function saveState(id, data) {
-  const old = loadState(id);
-  localStorage.setItem("player_state" + id, JSON.stringify({ ...old, ...data }));
+  const old = loadState(id)
+  localStorage.setItem("player_state" + id, JSON.stringify({ ...old, ...data }))
 }
 
-export default function AnimePanel({ animeId, animeMedia, animeIndex, onRelationChange, onEpisodeChange, triggerEpisode }) {
-  const saved = loadState(id);
+export default function AnimePanel({
+  animeId,
+  setAnimeId,
+  animeMedia,
+  selectedRelation,
+  setSelectedRelation,
+  selectedEpisode,
+  setSelectedEpisode,
+}) {
 
-  const [selectedIndex, setSelectedIndex] = useState(saved.index ?? animeIndex ?? 0);
-  const selectedRelation = animeMedia[selectedIndex];
+  const saved = loadState(animeId || "anime")
+  const [range, setRange] = useState(saved.range || [1, 50])
+  const listRef = useRef(null)
 
-  const totalEpisodes = selectedRelation?.episodes || 1;
-  const [range, setRange] = useState(saved.range || [1, Math.min(50, totalEpisodes)]);
-  const [selectedEp, setSelectedEp] = useState(saved.episode || 1);
+  const updateRelation = (index) => {
+    const relation = animeMedia[index]
+    if (!relation) return
 
-  const listRef = useRef(null);
+    setSelectedRelation(index)
+    setAnimeId(relation.id)
 
-  const updateRelation = index => {
-    setSelectedIndex(index);
-    saveState(animeId, { index });
-    setRange([1, Math.min(50, animeMedia[index].episodes || 1)]);
-    setSelectedEp(1);
-    saveState(animeId, { episode: 1 });
-    onEpisodeChange(animeMedia[index].animeId, 1);
-  };
-
-  const updateRange = r => {
-    setRange(r);
-    saveState(animeId, { range: r });
-  };
-
-  const updateEp = ep => {
-    setSelectedEp(ep);
-    saveState(animeId, { episode: ep });
-    onEpisodeChange(selectedRelation.animeId, ep);
-  };
-
-  const ranges = [];
-  for (let start = 1; start <= totalEpisodes; start += 50) {
-    ranges.push([start, Math.min(start + 49, totalEpisodes)]);
+    saveState(relation.id, {
+      relation: index,
+    })
   }
 
-  const episodesInRange = [];
-  for (let ep = range[0]; ep <= Math.min(range[1], totalEpisodes); ep++) {
-    episodesInRange.push(ep);
+  const updateRange = (r) => {
+    setRange(r)
+    saveState(animeId, { range: r })
   }
 
+  const updateEp = (ep) => {
+    setSelectedEpisode(ep)
+    saveState(animeId, { episode: ep })
+  }
+
+  const current = animeMedia[selectedRelation]
+  const total = current?.totalEpisodes || 0
+
+  const ranges = []
+  for (let start = 1; start <= total; start += 50) {
+    ranges.push([start, Math.min(start + 49, total)])
+  }
+  
+  const episodes = Array.from({ length: total }, (_, i) => ({
+    episode_number: i + 1,
+    id: current.id + "-ep" + (i + 1),
+    name: "Episode " + (i + 1),
+  }))
+
+  const episodesInRange =
+    episodes.filter(
+      (ep) =>
+        ep.episode_number >= range[0] && ep.episode_number <= range[1]
+    ) || []
+
+  // Restore scroll
   useEffect(() => {
     if (listRef.current && saved.scroll != null) {
-      listRef.current.scrollTop = saved.scroll;
+      listRef.current.scrollTop = saved.scroll
     }
-  }, [selectedIndex]);
+  }, [])
 
-  useEffect(() => {
-    if (triggerEpisode != null) {
-      updateEp(triggerEpisode);
-    }
-  }, [triggerEpisode]);
-
-  const handleScroll = e => {
-    saveState(animeId, { scroll: e.target.scrollTop });
-  };
+  const handleScroll = (e) => {
+    saveState(animeId, { scroll: e.target.scrollTop })
+  }
 
   return (
     <div className="mt-4">
-      <div className="flex items-center justify-between mb-2">
-        <h3 className="text-lg font-semibold">Episodes</h3>
-        <select
-          className="bg-zinc-900 text-white text-sm p-1"
-          value={range.join("-")}
-          onChange={e => {
-            const [start, end] = e.target.value.split("-").map(Number);
-            updateRange([start, end]);
-          }}
-        >
-          {ranges.map(([start, end]) => (
-            <option key={start} value={`${start}-${end}`}>
-              {start}–{end}
-            </option>
-          ))}
-        </select>
-      </div>
+      <h3 className="text-lg font-semibold mb-2">Seasons</h3>
 
       <div className="grid grid-cols-5 gap-2 mb-4">
-        {episodesInRange.map(ep => (
+        {animeMedia.map((rel, idx) => (
           <button
-            key={ep}
-            onClick={() => updateEp(ep)}
-            className={`p-1 text-sm ${
-              selectedEp === ep ? "bg-yellow-500 text-black" : "bg-zinc-900 text-white"
+            key={rel.id}
+            onClick={() => updateRelation(idx)}
+            className={`p-1 truncate text-sm ${
+              selectedRelation === idx
+                ? "bg-yellow-500 text-black"
+                : "bg-zinc-900 text-white"
             }`}
           >
-            {ep}
+            S{idx + 1}
           </button>
         ))}
       </div>
 
-      <h3 className="text-lg font-semibold mb-2">Relations</h3>
-      <div className="max-h-72 overflow-y-auto" ref={listRef} onScroll={handleScroll}>
-        {animeMedia.map((rel, idx) => (
-          <div
-            key={rel.id}
-            onClick={() => updateRelation(idx)}
-            className={`p-2 bg-zinc-900 text-sm flex items-center justify-between cursor-pointer mb-1 ${
-              selectedIndex === idx ? "border-l-4 border-yellow-500" : "border-l-4 border-transparent"
-            }`}
-          >
-            <p className="truncate">{idx}. {rel.title.english || rel.title.romaji || `Rel ${idx + 1}`}</p>
+      {total > 0 && (
+        <>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-lg font-semibold">Episodes</h3>
+
+            <select
+              className="bg-zinc-900 text-white text-sm p-1"
+              value={range.join("-")}
+              onChange={(e) => {
+                const [start, end] = e.target.value.split("-").map(Number)
+                updateRange([start, end])
+              }}
+            >
+              {ranges.map(([start, end]) => (
+                <option key={start} value={`${start}-${end}`}>
+                  {start}–{end}
+                </option>
+              ))}
+            </select>
           </div>
-        ))}
-      </div>
+
+          <div
+            className="max-h-75 overflow-y-auto"
+            ref={listRef}
+            onScroll={handleScroll}
+          >
+            {episodesInRange.map((ep) => (
+              <div
+                key={ep.id}
+                onClick={() => updateEp(ep.episode_number)}
+                className={`p-2 bg-zinc-900 text-sm flex items-center justify-between cursor-pointer ${
+                  selectedEpisode === ep.episode_number
+                    ? "border-l-4 border-yellow-500"
+                    : "border-l-4 border-transparent"
+                }`}
+              >
+                <div className="overflow-hidden pr-2">
+                  <p className="truncate text-sm">
+                    {ep.episode_number}. {ep.name}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
-  );
+  )
 }

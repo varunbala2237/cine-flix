@@ -64,7 +64,8 @@ export default function Player() {
       
       const animeData = await fetchAnimeMedia(data)
       setAnimeMedia(animeData.animeMedia)
-      selectedSeason(animeData.animeInitialIndex)
+      setSelectedSeason(animeData.animeInitialIndex)
+      setAnimeId(animeData.animeMedia[animeData.animeInitialIndex].id)
       
       const recMedia = await fetchRecommendedMedia(id, type)
       setRecommendedMedia(recMedia)
@@ -175,27 +176,28 @@ export default function Player() {
       <Details media={media} />
       
       {/* Panel Section */}
-      {animeMedia ? (
-        <AnimePanel
-          animeId={animeId}
-          animeMedia={animeMedia}
-          selectedRelation={selectedSeason}
-          setSelectedRelation={setSelectedSeason}
-          selectedEpisode={selectedEpisode}
-          setSelectedEpisode={setSelectedEpisode}
-        />
-      ) : (
-        media.type === "tv" && (
-          <Panel 
-            id={media.id}
-            seasons={media.seasonsData} 
-            selectedSeason={selectedSeason}
-            setSelectedSeason={setSelectedSeason}
-            selectedEpisode={selectedEpisode}
-            setSelectedEpisode={setSelectedEpisode} 
-          />
-        )
-      )}
+      {animeMedia && animeMedia.length > 0 ? (
+  <AnimePanel
+    animeId={animeId}
+    setAnimeId={setAnimeId}
+    animeMedia={animeMedia}
+    selectedRelation={selectedSeason}
+    setSelectedRelation={setSelectedSeason}
+    selectedEpisode={selectedEpisode}
+    setSelectedEpisode={setSelectedEpisode}
+  />
+) : (
+  media.type === "tv" && (
+    <Panel
+      id={media.id}
+      seasons={media.seasonsData}
+      selectedSeason={selectedSeason}
+      setSelectedSeason={setSelectedSeason}
+      selectedEpisode={selectedEpisode}
+      setSelectedEpisode={setSelectedEpisode}
+    />
+  )
+)}
       
       {/* Recommended Section */}
       <Recommended mediaRecommended={recommendedMedia} />
