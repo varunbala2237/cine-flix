@@ -178,6 +178,7 @@ export default function Player() {
       {/* Mutli Panel Section */}
       {animeMedia && animeMedia.length > 0 ? (
           <AnimePanel
+            id={id}
             animeId={animeId}
             setAnimeId={setAnimeId}
             animeMedia={animeMedia}
