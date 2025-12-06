@@ -175,29 +175,29 @@ export default function Player() {
       {/* Details */}
       <Details media={media} />
       
-      {/* Panel Section */}
+      {/* Mutli Panel Section */}
       {animeMedia && animeMedia.length > 0 ? (
-  <AnimePanel
-    animeId={animeId}
-    setAnimeId={setAnimeId}
-    animeMedia={animeMedia}
-    selectedRelation={selectedSeason}
-    setSelectedRelation={setSelectedSeason}
-    selectedEpisode={selectedEpisode}
-    setSelectedEpisode={setSelectedEpisode}
-  />
-) : (
-  media.type === "tv" && (
-    <Panel
-      id={media.id}
-      seasons={media.seasonsData}
-      selectedSeason={selectedSeason}
-      setSelectedSeason={setSelectedSeason}
-      selectedEpisode={selectedEpisode}
-      setSelectedEpisode={setSelectedEpisode}
-    />
-  )
-)}
+          <AnimePanel
+            animeId={animeId}
+            setAnimeId={setAnimeId}
+            animeMedia={animeMedia}
+            selectedRelation={selectedSeason}
+            setSelectedRelation={setSelectedSeason}
+            selectedEpisode={selectedEpisode}
+            setSelectedEpisode={setSelectedEpisode}
+          />
+        ) : (
+          media.type === "tv" && (
+          <Panel
+            id={media.id}
+            seasons={media.seasonsData}
+            selectedSeason={selectedSeason}
+            setSelectedSeason={setSelectedSeason}
+            selectedEpisode={selectedEpisode}
+            setSelectedEpisode={setSelectedEpisode}
+          />
+        )
+      )}
       
       {/* Recommended Section */}
       <Recommended mediaRecommended={recommendedMedia} />
