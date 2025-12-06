@@ -14,7 +14,7 @@ This project contains dynamic mapping of TMDb to AniList data.
 
 Source files located at:
 - client/src/api/fetchAnimeMedia.js
-- clinet/src/utils/animeUtils.js
+- client/src/utils/animeUtils.js
 
 ## Setup
 
