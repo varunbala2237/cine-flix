@@ -53,7 +53,7 @@ export default function Player() {
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
-  const [selectedSeason, setSelectedSeason] = useState(1)
+  const [selectedSeason, setSelectedSeason] = useState(0)
   const [selectedEpisode, setSelectedEpisode] = useState(1)
   const [autoEpisode, setAutoEpisode] = useState(null)
 
@@ -175,7 +175,7 @@ export default function Player() {
       {/* Details */}
       <Details media={media} />
       
-      {/* Mutli Panel Section */}
+      {/* Multi-Panel Section */}
       {animeMedia && animeMedia.length > 0 ? (
           <AnimePanel
             id={id}
