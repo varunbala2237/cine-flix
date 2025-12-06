@@ -3,10 +3,18 @@
 A portable web application for streaming movies, TV shows & anime.
 
 ## Features
-- Latest & Trending content
-- Search for content
-- Dynamic TMDB to AniList mapping
-- Recommendations content
+- Latest & Trending
+- Search
+- Dynamic Mapping
+- Recommendations
+
+## Utilities
+
+This project contains dynamic mapping of TMDb to AniList data.
+
+Source files located at:
+- client/src/api/fetchAnimeMedia.js
+- clinet/src/utils/animeUtils.js
 
 ## Setup
 
