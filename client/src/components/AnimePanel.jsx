@@ -23,7 +23,16 @@ export default function AnimePanel({
   const saved = loadState(id)
   const relationsRef = useRef(null)
 
-  const current = animeMedia[selectedRelation] || null
+  const initialRelationIndex =
+    saved.relationIndex != null
+      ? saved.relationIndex
+      : selectedRelation != null
+      ? selectedRelation
+      : 0
+
+  const [currentRelationIndex, setCurrentRelationIndex] = useState(initialRelationIndex)
+
+  const current = animeMedia[currentRelationIndex] || null
   const totalEpisodes = current?.episodes || 1
 
   const [range, setRange] = useState(saved.range || [1, Math.min(50, totalEpisodes)])
@@ -39,15 +48,23 @@ export default function AnimePanel({
   )
 
   useEffect(() => {
+    if (!animeMedia || animeMedia.length === 0) return
+    const rel = animeMedia[currentRelationIndex]
+    if (!rel) return
+
+    setAnimeId(rel.id)
+
+    const restored = loadState(id)
+    const ep = restored.episode || 1
+    setSelectedEpisode(ep)
+
+    const r = restored.range || [1, Math.min(50, rel.episodes || 1)]
+    setRange(r)
+
     if (relationsRef.current && saved.relationsScroll != null) {
       relationsRef.current.scrollTop = saved.relationsScroll
     }
-    setRange(prev => {
-      const start = Math.min(prev[0], totalEpisodes)
-      const end = Math.min(prev[1], totalEpisodes)
-      return [Math.max(1, start), Math.max(1, end)]
-    })
-  }, [animeMedia, selectedRelation])
+  }, [animeMedia, currentRelationIndex])
 
   const handleRelationsScroll = e => {
     saveState(id, { relationsScroll: e.target.scrollTop })
@@ -57,6 +74,7 @@ export default function AnimePanel({
     const rel = animeMedia[index]
     if (!rel) return
 
+    setCurrentRelationIndex(index)
     setSelectedRelation(index)
     setAnimeId(rel.id)
 
@@ -82,10 +100,8 @@ export default function AnimePanel({
 
   return (
     <div className="mt-4">
-
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-lg font-semibold">Episodes</h3>
-
         <select
           className="bg-zinc-900 text-white text-sm p-1"
           value={range.join("-")}
@@ -130,7 +146,7 @@ export default function AnimePanel({
             key={rel.id}
             onClick={() => handleSelectRelation(i)}
             className={`p-2 bg-zinc-900 text-sm flex items-center justify-between cursor-pointer ${
-              selectedRelation === i
+              currentRelationIndex === i
                 ? "border-l-4 border-yellow-500"
                 : "border-l-4 border-transparent"
             }`}
@@ -141,7 +157,6 @@ export default function AnimePanel({
           </div>
         ))}
       </div>
-
     </div>
   )
 }
