@@ -18,22 +18,14 @@ export default function AnimePanel({
   selectedRelation,
   setSelectedRelation,
   selectedEpisode,
-  setSelectedEpisode
+  setSelectedEpisode,
+  noOfEpisodes
 }) {
   const saved = loadState(id)
   const relationsRef = useRef(null)
 
-  const initialRelationIndex =
-    saved.relationIndex != null
-      ? saved.relationIndex
-      : selectedRelation != null
-      ? selectedRelation
-      : 0
-
-  const [currentRelationIndex, setCurrentRelationIndex] = useState(initialRelationIndex)
-
-  const current = animeMedia[currentRelationIndex] || null
-  const totalEpisodes = current?.episodes || 1
+  const current = animeMedia[selectedRelation] || null
+  const totalEpisodes = current?.episodes || noOfEpisodes || 1
 
   const [range, setRange] = useState(saved.range || [1, Math.min(50, totalEpisodes)])
 
@@ -49,7 +41,7 @@ export default function AnimePanel({
 
   useEffect(() => {
     if (!animeMedia || animeMedia.length === 0) return
-    const rel = animeMedia[currentRelationIndex]
+    const rel = animeMedia[selectedRelation]
     if (!rel) return
 
     setAnimeId(rel.id)
@@ -64,7 +56,7 @@ export default function AnimePanel({
     if (relationsRef.current && saved.relationsScroll != null) {
       relationsRef.current.scrollTop = saved.relationsScroll
     }
-  }, [animeMedia, currentRelationIndex])
+  }, [animeMedia, selectedRelation])
 
   const handleRelationsScroll = e => {
     saveState(id, { relationsScroll: e.target.scrollTop })
@@ -74,7 +66,6 @@ export default function AnimePanel({
     const rel = animeMedia[index]
     if (!rel) return
 
-    setCurrentRelationIndex(index)
     setSelectedRelation(index)
     setAnimeId(rel.id)
 
@@ -85,7 +76,7 @@ export default function AnimePanel({
     setSelectedEpisode(ep)
     setRange(r)
 
-    saveState(id, { relationIndex: index })
+    saveState(id, { season: index })
   }
 
   const handleRangeChange = r => {
@@ -146,7 +137,7 @@ export default function AnimePanel({
             key={rel.id}
             onClick={() => handleSelectRelation(i)}
             className={`p-2 bg-zinc-900 text-sm flex items-center justify-between cursor-pointer ${
-              currentRelationIndex === i
+              selectedRelation === i
                 ? "border-l-4 border-yellow-500"
                 : "border-l-4 border-transparent"
             }`}

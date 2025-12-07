@@ -63,26 +63,28 @@ export default function Player() {
     async function load() {
       const data = await fetchMediaData(id, type)
       setMedia(data)
+      const saved = loadState(id)
       
       const animeData = await fetchAnimeMedia(data)
+      const DUB_PARAM = isDub ? "&dub=true" : "&dub=false"
       
       const recMedia = await fetchRecommendedMedia(id, type)
       setRecommendedMedia(recMedia)
       
       if (animeData) {
         setAnimeMedia(animeData.animeMedia || [])
-        setSelectedSeason(animeData.animeInitialIndex)
+        setSelectedSeason(saved.season ?? animeData.animeInitialIndex ?? 0)
         setAnimeId(animeData.animeMedia[animeData.animeInitialIndex].id)
         
         const saved = loadState(animeId)
         const episode = saved.episode || 1
         
-        setMediaUrl(`${BASE_URL}anime/${animeId}/${episode}?${ADD_ONS}`)
+        setSelectedEpisode(episode)
+        setMediaUrl(`${BASE_URL}anime/${animeId}/${episode}?${ADD_ONS}${DUB_PARAM}`)
       } else {
         setAnimeMedia([])
         
         if (type === "tv") {
-          const saved = loadState(id)
           const season = saved.season || 1
           const episode = saved.episode || 1
         
@@ -216,6 +218,7 @@ export default function Player() {
             setSelectedRelation={setSelectedSeason}
             selectedEpisode={selectedEpisode}
             setSelectedEpisode={setSelectedEpisode}
+            noOfEpisodes={media.episodes}
           />
       ) : (
         media.type === "tv" && (
