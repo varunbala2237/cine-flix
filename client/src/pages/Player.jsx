@@ -71,17 +71,27 @@ export default function Player() {
       const recMedia = await fetchRecommendedMedia(id, type)
       setRecommendedMedia(recMedia)
       
+      const newSaved = loadState(id)
+      
       if (animeData) {
-        setAnimeMedia(animeData.animeMedia || [])
-        setSelectedSeason(saved.season ?? animeData.animeInitialIndex ?? 0)
-        setAnimeId(animeData.animeMedia[animeData.animeInitialIndex].id)
+        const season = newSaved.season || animeData.animeInitialIndex || 0
+        const episode = newSaved.episode || 1
         
-        setMediaUrl(`${BASE_URL}anime/${animeId}/${selectedEpisode}?${ADD_ONS}${DUB_PARAM}`)
+        setAnimeMedia(animeData.animeMedia || [])
+        setAnimeId(animeData.animeMedia[animeData.animeInitialIndex].id)
+        setSelectedSeason(season)
+        setSelectedEpisode(episode)
+        setMediaUrl(`${BASE_URL}anime/${animeId}/${episode}?${ADD_ONS}${DUB_PARAM}`)
       } else {
         setAnimeMedia([])
         
         if (type === "tv") {
-          setMediaUrl(`${BASE_URL}${type}/${id}/${selectedSeason}/${selectedEpisode}?${ADD_ONS}`)
+          const season = newSaved.season || 1
+          const episode = newSaved.episode || 1
+        
+          setSelectedSeason(season)
+          setSelectedEpisode(episode)
+          setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${ADD_ONS}`)
         }
       
         if (type === "movie") {
