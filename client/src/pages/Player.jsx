@@ -74,11 +74,11 @@ export default function Player() {
       const newSaved = loadState(id)
       
       if (animeData) {
-        const season = newSaved.season || animeData.animeInitialIndex || 0
+        const season = newSaved.season || animeData.initialIndex || 0
         const episode = newSaved.episode || 1
         
         setAnimeMedia(animeData.animeMedia || [])
-        setAnimeId(animeData.animeMedia[animeData.animeInitialIndex].id)
+        setAnimeId(animeData.animeMedia[animeData.initialIndex].id)
         setSelectedSeason(season)
         setSelectedEpisode(episode)
         setMediaUrl(`${BASE_URL}anime/${animeId}/${episode}?${ADD_ONS}${DUB_PARAM}`)
