@@ -74,7 +74,7 @@ export default function Player() {
       const newSaved = loadState(id)
       
       if (animeData) {
-        const season = newSaved.season || animeData.initialIndex || 0
+        const season = newSaved.season ?? animeData.initialIndex ?? 0
         const episode = newSaved.episode || 1
         
         setAnimeMedia(animeData.animeMedia || [])
