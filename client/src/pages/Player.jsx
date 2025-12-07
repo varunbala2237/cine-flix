@@ -57,7 +57,7 @@ export default function Player() {
   const [mediaUrl, setMediaUrl] = useState("")
   
   const [selectedSeason, setSelectedSeason] = useState(saved.season ?? 1)
-  const [selectedEpisode, setSelectedEpisode] = useState(saved.episode ?? 1)
+  const [selectedEpisode, setSelectedEpisode] = useState(saved.episode || 1)
   const [autoEpisode, setAutoEpisode] = useState(null)
 
   useEffect(() => {
@@ -72,7 +72,6 @@ export default function Player() {
       setRecommendedMedia(recMedia)
       
       const newSaved = loadState(id)
-      
       if (animeData) {
         const season = newSaved.season ?? animeData.initialIndex ?? 0
         const episode = newSaved.episode || 1
@@ -138,8 +137,8 @@ export default function Player() {
 
       let data
       try { data = JSON.parse(parsed.data) } catch { return }
-
-      const current = data[`${type}-${id}`]
+      
+      let current = animeId ? data[`anime-${animeId}`] : data[`${type}-${id}`]
       if (!current) return
 
       const watched = current.progress?.watched
@@ -161,7 +160,7 @@ export default function Player() {
 
     window.addEventListener("message", handleMsg)
     return () => window.removeEventListener("message", handleMsg)
-  }, [media])
+  }, [media, animeId])
   
   if (!media) return <div className="min-h-screen bg-black text-white px-4 py-3">
     <p className="text-center text-white mt-10">Loading...</p>
