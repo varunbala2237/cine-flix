@@ -56,8 +56,8 @@ export default function Player() {
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
-  const [selectedSeason, setSelectedSeason] = useState(saved.season || 1)
-  const [selectedEpisode, setSelectedEpisode] = useState(saved.episode || 1)
+  const [selectedSeason, setSelectedSeason] = useState(saved.season ?? 1)
+  const [selectedEpisode, setSelectedEpisode] = useState(saved.episode ?? 1)
   const [autoEpisode, setAutoEpisode] = useState(null)
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function Player() {
       const newSaved = loadState(id)
       
       if (animeData) {
-        const season = newSaved.season ?? animeData.animeInitialIndex ?? 0
+        const season = newSaved.season || animeData.animeInitialIndex || 0
         const episode = newSaved.episode || 1
         
         setAnimeMedia(animeData.animeMedia || [])
