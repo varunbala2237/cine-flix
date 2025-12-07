@@ -47,6 +47,7 @@ export default function Player() {
   const { id, type } = useParams()
   const navigate = useNavigate()
   const BASE_URL = import.meta.env.VITE_SOURCE_BASE
+  const saved = loadState(id)
   
   const [media, setMedia] = useState(null)
   const [animeId, setAnimeId] = useState(null)
@@ -55,15 +56,14 @@ export default function Player() {
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
-  const [selectedSeason, setSelectedSeason] = useState(1)
-  const [selectedEpisode, setSelectedEpisode] = useState(1)
+  const [selectedSeason, setSelectedSeason] = useState(saved.season || 1)
+  const [selectedEpisode, setSelectedEpisode] = useState(saved.episode || 1)
   const [autoEpisode, setAutoEpisode] = useState(null)
 
   useEffect(() => {
     async function load() {
       const data = await fetchMediaData(id, type)
       setMedia(data)
-      const saved = loadState(id)
       
       const animeData = await fetchAnimeMedia(data)
       const DUB_PARAM = isDub ? "&dub=true" : "&dub=false"
@@ -76,21 +76,12 @@ export default function Player() {
         setSelectedSeason(saved.season ?? animeData.animeInitialIndex ?? 0)
         setAnimeId(animeData.animeMedia[animeData.animeInitialIndex].id)
         
-        const saved = loadState(animeId)
-        const episode = saved.episode || 1
-        
-        setSelectedEpisode(episode)
-        setMediaUrl(`${BASE_URL}anime/${animeId}/${episode}?${ADD_ONS}${DUB_PARAM}`)
+        setMediaUrl(`${BASE_URL}anime/${animeId}/${selectedEpisode}?${ADD_ONS}${DUB_PARAM}`)
       } else {
         setAnimeMedia([])
         
         if (type === "tv") {
-          const season = saved.season || 1
-          const episode = saved.episode || 1
-        
-          setSelectedSeason(season)
-          setSelectedEpisode(episode)
-          setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${ADD_ONS}`)
+          setMediaUrl(`${BASE_URL}${type}/${id}/${selectedSeason}/${selectedEpisode}?${ADD_ONS}`)
         }
       
         if (type === "movie") {
