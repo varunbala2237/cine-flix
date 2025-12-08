@@ -3,7 +3,7 @@ import {
   extractChronologicalRelationRecursive
 } from '../utils/animeUtils';
 
-const BASE_URL = import.meta.env.VITE_ANILIST_BASE;
+const BASE_URL = "https://graphql.anilist.co";
 
 export async function fetchAnimeMedia(media) {
   if (!media) return null;
