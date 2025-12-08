@@ -29,7 +29,7 @@ Now, in your terminal type these commands:
 
 ```bash
 git clone https://github.com/varunbala2237/cine-flix.git
-cd cine-flix
+cd cine-flix/client
 npm install
 npm run dev
 ```
