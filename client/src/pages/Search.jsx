@@ -38,6 +38,7 @@ export default function Search() {
     if (!searchText.trim()) return
 
     saveHistory(searchText)
+    setResultsMedia(null)
 
     const data = await fetchSearchResults(searchText)
     setResultsMedia(data)
@@ -66,13 +67,17 @@ export default function Search() {
       </form>
 
       {/* Results Section */}
-      <SearchResults 
+      {resultsMedia === null && query.trim() !== "" ? (
+        <p className="text-center text-white mt-4">Loading...</p>
+      ) : (
+        <SearchResults 
         mediaResults={resultsMedia}
         onHistorySelect={(text) => {
           setQuery(text)
           handleSearch(null, text)
         }}
         onHistoryDelete={deleteHistory} />
+      )}
     </div>
   )
 }

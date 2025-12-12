@@ -32,6 +32,14 @@ export default function Home() {
     loadData()
   }, [])
   
+  if(!carouselMedia && !trendingMedia) {
+    return (
+      <div className="min-h-screen bg-black text-white px-4 py-3">
+        <p className="text-center text-white mt-10">Loading...</p>
+      </div>
+    )
+  }
+  
   return (
     <div className="min-h-screen bg-black text-white px-4 py-3">
 
