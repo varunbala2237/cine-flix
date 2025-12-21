@@ -15,6 +15,7 @@ export default function History({ mediaList }) {
             poster={item.poster_path}
             backdrop={item.backdrop_path}
             type={item.type}
+            progress={item.progress}
           />
         ))}
       </div>

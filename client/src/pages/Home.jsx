@@ -12,7 +12,7 @@ import { fetchTrendingMedia } from "../api/fetchTrendingMedia"
 // Helpers for Local Storage
 function loadHistory() {
   const items = JSON.parse(localStorage.getItem("watch_history")) || []
-  return items.slice(0, 6)
+  return items.slice(0, 9)
 }
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
   useEffect(() => {
     async function loadData() {
       const latest = await fetchLatestMedia()
-      setCarouselMedia(latest.slice(0, 6))
+      setCarouselMedia(latest.slice(0, 9))
 
       const trending = await fetchTrendingMedia("all", "week")
       setTrendingMedia(trending)

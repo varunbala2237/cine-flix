@@ -1,29 +1,69 @@
 import { useNavigate } from "react-router-dom"
-const IMG_BASE = "https://image.tmdb.org/t/p/w500"
+import { useEffect, useRef, useState } from "react"
+
+const IMG_BASE = "https://image.tmdb.org/t/p/original"
 
 export default function Carousel({ mediaCarousel }) {
   const navigate = useNavigate()
-  
+  const containerRef = useRef(null)
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+
+    const onScroll = () => {
+      const i = Math.round(el.scrollLeft / el.clientWidth)
+      setIndex(i)
+    }
+
+    el.addEventListener("scroll", onScroll, { passive: true })
+    return () => el.removeEventListener("scroll", onScroll)
+  }, [])
+
   return (
-    <div className="w-full overflow-x-auto flex space-x-3 py-3 scrollbar-hide">
-      {mediaCarousel.map(item => (
-        <div 
-        key={item.id}
-        onClick={() => navigate(`/player/${item.media_type}/${item.id}`)}
-        className="relative w-72 h-40 flex-shrink-0 overflow-hidden">
-          <img
-            src={`${IMG_BASE}${item.poster_path || item.backdrop_path}`}
-            alt={item.title || item.name}
-            className="w-full h-full object-cover"
+    <div className="relative">
+      {/* Slides */}
+      <div
+        ref={containerRef}
+        className="flex overflow-x-scroll overscroll-x-contain snap-x snap-mandatory no-scrollbar"
+      >
+        {mediaCarousel.map(item => (
+          <div
+            key={item.id}
+            onClick={() => navigate(`/player/${item.media_type}/${item.id}`)}
+            className="min-w-full h-52 snap-center relative cursor-pointer"
+          >
+            <img
+              src={`${IMG_BASE}${item.backdrop_path || item.poster_path}`}
+              alt={item.title || item.name}
+              className="w-full h-full object-cover"
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+            {/* Title */}
+            <div className="absolute bottom-4 left-4 right-4">
+              <h2 className="text-lg font-semibold text-white">
+                {item.title || item.name}
+              </h2>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-end gap-2 mt-3">
+        {mediaCarousel.map((_, i) => (
+          <span
+            key={i}
+            className={`h-2 w-2 rounded-full transition ${
+              i === index ? "bg-yellow-500" : "bg-zinc-600"
+            }`}
           />
-          {/* Gradient overlay */}
-          <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
-          {/* Media title */}
-          <p className="absolute bottom-2 left-2 text-white font-semibold text-sm">
-            {item.title || item.name}
-          </p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

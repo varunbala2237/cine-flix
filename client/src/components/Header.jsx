@@ -1,5 +1,3 @@
-import { Home as HomeIcon, Search as SearchIcon, ArrowLeft as BackIcon } from "lucide-react"
-
 export default function Header({ onRouteClick, icon: Icon }) {
   return (
     <div className="flex items-center justify-between mb-4">

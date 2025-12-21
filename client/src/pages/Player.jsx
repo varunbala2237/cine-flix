@@ -4,6 +4,7 @@ import { Home as HomeIcon } from "lucide-react"
 import Cookies from "js-cookie"
 import Header from "../components/Header"
 import Details from "../components/Details"
+import Switch from "../components/Switch"
 import Panel from "../components/Panel"
 import AnimePanel from "../components/AnimePanel"
 import Recommended from "../components/Recommended"
@@ -32,6 +33,7 @@ function saveHistory(item) {
     poster_path: item.poster_path,
     backdrop_path: item.backdrop_path,
     type: item.type,
+    progress: item.progress ?? null,
     last_updated: Date.now()
   })
   
@@ -40,8 +42,8 @@ function saveHistory(item) {
   localStorage.setItem("watch_history", JSON.stringify(list))
 }
 
-// Add-ons of site
-const ADD_ONS="color=FACC15&nextEpisode=true"
+// Add-ons of iframe
+const ADDONS = "poster=true"
 
 export default function Player() {
   const { id, type } = useParams()
@@ -52,7 +54,11 @@ export default function Player() {
   const [media, setMedia] = useState(null)
   const [animeId, setAnimeId] = useState(null)
   const [animeMedia, setAnimeMedia] = useState(undefined)
-  const [isDub, setIsDub] = useState(Cookies.get("anime_dub") === "true")
+  const [isHistorySaved, setIsHistorySaved] = useState(null)
+  
+  const [isAutoPlay, setIsAutoPlay] = useState(Cookies.get("media_autoplay") === "true")
+  const [isAutoNext, setIsAutoNext] = useState(Cookies.get("media_autonext") === "true")
+  const [isAutoDub, setIsAutoDub] = useState(Cookies.get("anime_autodub") === "true")
   const [recommendedMedia, setRecommendedMedia] = useState([])
   const [mediaUrl, setMediaUrl] = useState("")
   
@@ -66,21 +72,23 @@ export default function Player() {
       setMedia(data)
       
       const animeData = await fetchAnimeMedia(data)
-      const DUB_PARAM = isDub ? "&dub=true" : "&dub=false"
+      const AUTOPLAY_PARAM = isAutoPlay ? "autoPlay=true" : "autoPlay=false"
+      const AUTODUB_PARAM = isAutoDub ? "dub" : "sub"
       
       const recMedia = await fetchRecommendedMedia(id, type)
       setRecommendedMedia(recMedia)
       
       const newSaved = loadState(id)
       if (animeData) {
+        const newId = animeData.animeMedia[animeData.initialIndex].id
         const season = newSaved.season ?? animeData.initialIndex ?? 0
         const episode = newSaved.episode || 1
         
         setAnimeMedia(animeData.animeMedia || [])
-        setAnimeId(animeData.animeMedia[animeData.initialIndex].id)
+        setAnimeId(newId)
         setSelectedSeason(season)
         setSelectedEpisode(episode)
-        setMediaUrl(`${BASE_URL}anime/${animeId}/${episode}?${ADD_ONS}${DUB_PARAM}`)
+        setMediaUrl(`${BASE_URL}anime/ani${newId}/${episode}/${AUTODUB_PARAM}?${AUTOPLAY_PARAM}&${ADDONS}`)
       } else {
         setAnimeMedia([])
         
@@ -90,11 +98,11 @@ export default function Player() {
         
           setSelectedSeason(season)
           setSelectedEpisode(episode)
-          setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${ADD_ONS}`)
+          setMediaUrl(`${BASE_URL}${type}/${id}/${season}/${episode}?${AUTOPLAY_PARAM}&${ADDONS}`)
         }
       
         if (type === "movie") {
-          setMediaUrl(`${BASE_URL}${type}/${id}?${ADD_ONS}`)
+          setMediaUrl(`${BASE_URL}${type}/${id}?${AUTOPLAY_PARAM}&${ADDONS}`)
         }
       }
     }
@@ -104,18 +112,21 @@ export default function Player() {
   useEffect(() => {
     if (animeMedia === undefined) return
     
-    const DUB_PARAM = isDub ? "&dub=true" : "&dub=false"
+    const AUTOPLAY_PARAM = isAutoPlay ? "autoPlay=true" : "autoPlay=false"
+    const AUTODUB_PARAM = isAutoDub ? "dub" : "sub"
     
     if (animeMedia.length > 0) {
-      setMediaUrl(`${BASE_URL}anime/${animeId}/${selectedEpisode}?${ADD_ONS}${DUB_PARAM}`)
+      setMediaUrl(`${BASE_URL}anime/ani${animeId}/${selectedEpisode}/${AUTODUB_PARAM}?${AUTOPLAY_PARAM}&${ADDONS}`)
     } else {
       if (type === "tv") {
-        setMediaUrl(`${BASE_URL}${type}/${id}/${selectedSeason}/${selectedEpisode}?${ADD_ONS}`)
+        setMediaUrl(`${BASE_URL}${type}/${id}/${selectedSeason}/${selectedEpisode}?${AUTOPLAY_PARAM}&${ADDONS}`)
       }
     }
     
-    Cookies.set("anime_dub", isDub, { expires: 365 })
-  }, [selectedSeason, selectedEpisode, isDub])
+    Cookies.set("media_autoplay", isAutoPlay, { expires: 365 })
+    Cookies.set("media_autonext", isAutoNext, { expires: 365 })
+    Cookies.set("anime_autodub", isAutoDub, { expires: 365 })
+  }, [animeId, selectedSeason, selectedEpisode, isAutoPlay, isAutoNext, isAutoDub])
   
   useEffect(() => {
     if (!autoEpisode) return
@@ -123,44 +134,67 @@ export default function Player() {
 
     setSelectedEpisode(autoEpisode)
   }, [autoEpisode])
+  
+  useEffect(() => {
+    setIsHistorySaved(null)
+  }, [id])
 
   // To save history and trigger episode change
   useEffect(() => {
     if (!media) return
-
-    const handleMsg = (e) => {
-      if (!e.data) return
-
-      let parsed;
-      try { parsed = JSON.parse(e.data) } catch { return }
-      if (parsed.type !== "MEDIA_DATA") return
-
-      let data
-      try { data = JSON.parse(parsed.data) } catch { return }
-      
-      let current = animeId ? data[`anime-${animeId}`] : data[`${type}-${id}`]
-      if (!current) return
-
-      const watched = current.progress?.watched
-      if (watched > 0) {
-        saveHistory({
+    
+    if(animeMedia?.length > 0 && isHistorySaved !== media.id) {
+      saveHistory({
           id: media.id,
           title: media.title,
           poster_path: media.poster_path,
           backdrop_path: media.backdrop_path,
           type: media.type
         })
+        setIsHistorySaved(media.id)
+    }
+
+    const handleMsg = (e) => {
+      if (!e.data || e.data.type !== "PLAYER_EVENT") return
+
+      const {
+        event,
+        tmdbId,
+        duration,
+        currentTime,
+        mediaType,
+        season,
+        episode
+      } = e.data.data || {}
+
+      if (event === "time" && currentTime > 0 && isHistorySaved !== media.id) {
+        saveHistory({
+          id: tmdbId ?? media.id,
+          title: media.title,
+          poster_path: media.poster_path,
+          backdrop_path: media.backdrop_path,
+          type: media.type,
+          progress : {
+            currentTime,
+            duration
+          }
+        })
+        setIsHistorySaved(media.id)
       }
 
-      if (media.type === "tv" && current.last_episode_watched) {
-        setAutoEpisode(current.last_episode_watched)
-        saveState(id, { episode: current.last_episode_watched })
+      if (
+        event === "complete" &&
+        mediaType === "tv" && isAutoNext
+      ) {
+        const nextEpisode = episode + 1
+        setAutoEpisode(nextEpisode)
+        saveState(id, { episode: nextEpisode })
       }
     }
 
     window.addEventListener("message", handleMsg)
     return () => window.removeEventListener("message", handleMsg)
-  }, [media, animeId])
+  }, [media, animeMedia, isAutoNext])
   
   if (!media) {
     return (
@@ -188,26 +222,38 @@ export default function Player() {
           allow="encrypted-media"
         />
       </div>
+      
+      {/* Control Switches */}
+      <div className="my-4 flex flex-nowrap gap-4 text-xs items-center justify-end">
+          
+        <div className="flex items-center gap-2">
+          <span>Auto Play</span>
+          <Switch checked={isAutoPlay} onChange={setIsAutoPlay} />
+        </div>
+        
+        {media.type === "tv" && animeMedia?.length === 0 && (
+          <div className="flex items-center gap-2">
+              <span>Auto Next</span>
+              <Switch
+                checked={isAutoNext}
+                onChange={setIsAutoNext}
+              />
+            </div>
+        )}
+
+        {animeMedia?.length > 0 && (
+          <div className="flex items-center gap-2">
+              <span>Auto Dub</span>
+              <Switch
+                checked={isAutoDub}
+                onChange={setIsAutoDub}
+              />
+            </div>
+        )}
+      </div>
 
       {/* Details */}
       <Details media={media} />
-      
-      {animeMedia !== undefined && animeMedia.length > 0 && (
-        <div className="my-4 flex items-center">
-          <button
-            className={`py-1 px-3 text-sm ${!isDub ? "bg-yellow-500 text-black" : "bg-zinc-900"}`}
-            onClick={() => setIsDub(false)}
-          >
-            Sub
-          </button>
-          <button
-            className={`py-1 px-3 text-sm ${isDub ? "bg-yellow-500 text-black" : "bg-zinc-900"}`}
-            onClick={() => setIsDub(true)}
-          >
-            Dub
-          </button>
-        </div>
-      )}
       
       {/* Multi-Panel Section */}
       {animeMedia === undefined ? (
