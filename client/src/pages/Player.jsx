@@ -37,7 +37,7 @@ function saveHistory(item) {
     last_updated: Date.now()
   })
   
-  list = list.slice(0, 6)
+  list = list.slice(0, 9)
 
   localStorage.setItem("watch_history", JSON.stringify(list))
 }
