@@ -8,7 +8,7 @@ export default function Switch({ checked, onChange }) {
       }`}
     >
       <span
-        className={`w-4 h-4 bg-black rounded-full absolute top-0.5 transition ${
+        className={`w-4 h-4 bg-white shadow rounded-full absolute top-0.5 transition ${
           checked ? "left-4" : "left-1"
         }`}
       />
