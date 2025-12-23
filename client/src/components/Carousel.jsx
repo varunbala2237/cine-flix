@@ -20,7 +20,7 @@ export default function Carousel({ mediaCarousel }) {
     el.addEventListener("scroll", onScroll, { passive: true })
     return () => el.removeEventListener("scroll", onScroll)
   }, [])
-
+  
   return (
     <div className="relative">
       {/* Slides */}
@@ -58,7 +58,7 @@ export default function Carousel({ mediaCarousel }) {
         {mediaCarousel.map((_, i) => (
           <span
             key={i}
-            className={`h-2 w-2 rounded-full transition ${
+            className={`h-2 w-2 transition ${
               i === index ? "bg-yellow-500" : "bg-zinc-600"
             }`}
           />
