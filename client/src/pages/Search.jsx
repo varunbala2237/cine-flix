@@ -17,7 +17,7 @@ export default function Search() {
 
     let items = JSON.parse(localStorage.getItem("search_history")) || []
 
-    items = [text, ...items.filter(i => i !== text)].slice(0, 10)
+    items = [text, ...items.filter(i => i !== text)].slice(0, 9)
 
     localStorage.setItem("search_history", JSON.stringify(items))
   }
