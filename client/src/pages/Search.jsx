@@ -68,7 +68,7 @@ export default function Search() {
 
       {/* Results Section */}
       {resultsMedia === null && query.trim() !== "" ? (
-        <p className="text-center text-white mt-4">Loading...</p>
+        <p className="text-center text-white mt-4">Searching...</p>
       ) : (
         <SearchResults 
         mediaResults={resultsMedia}
